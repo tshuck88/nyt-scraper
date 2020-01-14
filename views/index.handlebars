@@ -1,0 +1,28 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4 text-center">New York Times Scraper</h1>
+    </div>
+</div>
+
+<div class="container" id="article-container">
+    {{#if articles}}
+    {{#each articles}}
+    {{#unless saved}}
+    <div class="card">
+        <div class="card-body">
+            <a href="{{this.link}}">
+                <h5 class="card-title article-title">{{this.title}}</h5>
+            </a>
+            <p class="card-text article-summary">{{this.summary}}</p>
+            <button class="btn btn-primary save-article-button" data-id={{this._id}}>Save Article</button>
+        </div>
+    </div>
+    {{/unless}}
+    {{/each}}
+    {{else}}
+    <div>
+        <h4>There are no articles here. Please scrape to find more articles or check saved articles.</h4>
+        <a class="btn btn-primary" href="/scrape">Scrape Articles</a>
+        <a class="btn btn-primary" href="/saved">Saved Articles</a>
+    </div>
+</div>

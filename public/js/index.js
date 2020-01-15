@@ -1,3 +1,4 @@
+// Event handler to move articles to saved
 $(document).on("click", ".save-article-button", function () {
     const article = $(this);
     const articleID = $(this).data("id");
@@ -8,4 +9,8 @@ $(document).on("click", ".save-article-button", function () {
     }).then(function (data) {
         $(article).parents(".card").remove();
     });
+});
+
+$(document).on("click", "#clear-articles", function () {
+    $.get("/clear");
 });

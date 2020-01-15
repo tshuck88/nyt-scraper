@@ -43,7 +43,7 @@ mongoose.connect(MONGODB_URI, {
 // app.use(routes);
 
 app.get("/", function (req, res) {
-  db.Article.find({}).limit(20).then(function (articles) {
+  db.Article.find({}).then(function (articles) {
     res.render("index", { articles })
     console.log(articles)
   }).catch(function (err) {
@@ -79,6 +79,7 @@ app.get("/scrape", function (req, res) {
         .then(function (dbArticle) {
           // View the added result in the console
           console.log(dbArticle);
+          res.redirect("/")
         })
         .catch(function (err) {
           // If an error occurred, log it
@@ -111,6 +112,15 @@ app.put("/saved/:id", function (req, res) {
       res.json(err);
     });
 });
+
+// Route to clear all articles
+app.get("/clear", function(req, res){
+  db.Article.deleteMany({})
+    .then(function(dbArticle){
+      console.log("Articles Deleted")
+      res.redirect(req.get('referer'));
+    })
+})
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/article/:id", function (req, res) {

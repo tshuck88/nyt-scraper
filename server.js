@@ -114,13 +114,25 @@ app.put("/saved/:id", function (req, res) {
 });
 
 // Route to clear all articles
-app.get("/clear", function(req, res){
+app.get("/clear", function (req, res) {
   db.Article.deleteMany({})
-    .then(function(dbArticle){
+    .then(function (dbArticle) {
       console.log("Articles Deleted")
       res.redirect(req.get('referer'));
     })
-})
+});
+
+app.delete("/clear/:id", function (req, res) {
+  db.Article.findOneAndUpdate(
+    { _id: req.params.id },
+    { saved: false })
+    .then(function (dbArticle) {
+      res.json(dbArticle)
+    })
+    .catch(function (err) {
+      res.json(err)
+    });
+});
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/article/:id", function (req, res) {

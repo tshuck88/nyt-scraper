@@ -36,10 +36,10 @@
                 <h5 class="card-title article-title">{{this.title}}</h5>
             </a>
             <p class="card-text article-summary">{{this.summary}}</p>
-            <button class="btn btn-primary delete-article-button" data-id={{this._id}}>Remove Article</button>
+            <button class="btn btn-primary remove-article-button" data-id={{this._id}}>Remove Article</button>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"
-                data-id={{this._id}}>Add A Note</button>
+                data-id={{this._id}}>Article Notes</button>
 
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
@@ -47,12 +47,14 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Add a Note About This Article</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">Notes About This Article</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body add-note-text"></div>
+                        <div class="modal-body">
+                            <textarea class="form-control" id="add-note-text" rows="3" placeholder="New Note"></textarea>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             <button type="button" class="btn btn-primary add-note-button" data-id={{this._id}}>Add Note</button>

@@ -38,7 +38,7 @@
             <p class="card-text article-summary">{{this.summary}}</p>
             <button class="btn btn-primary remove-article-button" data-id={{this._id}}>Remove Article</button>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"
+            <button type="button" id="article-notes" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"
                 data-id={{this._id}}>Article Notes</button>
 
             <!-- Modal -->
@@ -53,11 +53,13 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <div id="notes-container">
+                            </div>
                             <textarea class="form-control" id="add-note-text" rows="3" placeholder="New Note"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary add-note-button" data-id={{this._id}}>Add Note</button>
+                            <button type="button" class="btn btn-primary" id="add-note-button" data-id={{this._id}}>Add Note</button>
                         </div>
                     </div>
                 </div>

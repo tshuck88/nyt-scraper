@@ -31,12 +31,10 @@ app.use(express.static("public"));
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:passw0rd@ds263928.mlab.com:63928/heroku_16r0t305";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 // Connect to the Mongo DB
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true
-});
+mongoose.connect(MONGODB_URI);
 
 // Routes
 // var routes = require('./routes/routes');

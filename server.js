@@ -31,7 +31,7 @@ app.use(express.static("public"));
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://tyler:passw0rd@ds263808.mlab.com:63808/heroku_7wgxf4nl";
 
 // Connect to the Mongo DB
 mongoose.connect(MONGODB_URI, {

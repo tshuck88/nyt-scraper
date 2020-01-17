@@ -23,7 +23,7 @@ $(document).on("click", ".remove-article-button", function () {
         type: "DELETE"
     }).then(function (data) {
         $(article).parents(".card").remove();
-    })
+    });
 });
 
 $(document).on("click", "#add-note-button", function () {
@@ -46,19 +46,29 @@ $(document).on("click", "#article-notes", function () {
     const articleID = $(this).data("id");
     $.get("/article/" + articleID)
         .then(function (data) {
-            console.log(data[0].note)
             $("#notes-container").empty();
             const notesToRender = [];
             const note = data[0].note
-            for (var i = 0; i < note.length; i++) {
+            for (let i = 0; i < note.length; i++) {
                 const currentNote = $('<div class="note d-flex justify-content-between p-1">')
+                    .attr("data-id", note[i]._id)
                     .append("<p>" + note[i].body)
                     .append($("<button class='btn btn-danger note-delete'>x</button>"));
-                currentNote.children("button").data("_id", note[i]._id);
                 notesToRender.push(currentNote);
-                // }
             }
-            // Now append the notesToRender to the note-container inside the note modal
             $("#notes-container").append(notesToRender);
-        })
+        });
+});
+
+$(document).on("click", ".note-delete", function () {
+    const note = $(this).parent();
+    const noteID = $(this).parent().data("id");
+    $(note).remove();
+    
+    $.ajax({
+        url: "/note/" + noteID,
+        type: "DELETE"
+    }).then(function (data) {
+
+    });
 })

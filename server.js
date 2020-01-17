@@ -117,7 +117,7 @@ app.put("/saved/:id", function (req, res) {
 app.get("/clear", function (req, res) {
   db.Article.deleteMany({})
     .then(function (dbArticle) {
-      db.Note.deleteMany({});
+      db.Note.deleteMany({})
       console.log("Articles Deleted")
       res.redirect(req.get('referer'));
     });
@@ -167,7 +167,6 @@ app.post("/article/:id", function (req, res) {
 app.delete("/note/:id", function (req, res) {
   db.Note.deleteOne({ _id: req.params.id })
     .then(function (dbNote) {
-      console.log(req.params.id)
       db.Article.update(
         { note: { $in: [req.params.id] } },
         { $pull: { note: [req.params.id] } }
